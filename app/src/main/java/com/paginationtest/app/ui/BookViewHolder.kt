@@ -6,39 +6,34 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.paginationtest.app.R
+import com.paginationtest.app.databinding.ItemBookDataBinding
 import com.paginationtest.app.models.Book
 import com.paginationtest.app.models.GoogleBook
 import java.lang.StringBuilder
 
-class BookViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class BookViewHolder(private val binding: ItemBookDataBinding) : RecyclerView.ViewHolder(binding.root) {
 
-    private var imgBookPoster: ImageView = view.findViewById(R.id.img_book_poster)
-    private var txtBookTitle: TextView = view.findViewById(R.id.txt_book_title)
-    private var txtBookIsbn: TextView = view.findViewById(R.id.txt_book_isbn)
-    private var txtBookPageCount: TextView = view.findViewById(R.id.txt_book_page_count)
-    private var txtBookPublishDate: TextView = view.findViewById(R.id.txt_book_publish_date)
-    private var txtBookAuthor: TextView = view.findViewById(R.id.txt_book_author)
 
     fun onBindView(book: Book) {
 
         if (book.thumbnailUrl?.isNotEmpty() == true) {
-            Glide.with(itemView.context).load(book.thumbnailUrl).into(imgBookPoster)
+            Glide.with(itemView.context).load(book.thumbnailUrl).into(binding.imgBookPoster)
         } else{
-            imgBookPoster.setImageResource(R.drawable.placeholder_banner)
+            binding.imgBookPoster.setImageResource(R.drawable.placeholder_banner)
         }
 
         if (book.title?.isNotEmpty() == true) {
-            txtBookTitle.text = book.title
+            binding.txtBookTitle.text = book.title
         }
 
         if (book.isbn?.isNotEmpty() == true) {
-            txtBookIsbn.text = book.isbn
+            binding.txtBookIsbn.text = book.isbn
         }
 
-        txtBookPageCount.text = (book.pageCount ?: 0).toString()
+        binding.txtBookPageCount.text = (book.pageCount ?: 0).toString()
 
         if (book.publishedDate?.isNotEmpty() == true) {
-            txtBookPublishDate.text = book.publishedDate
+            binding.txtBookPublishDate.text = book.publishedDate
         }
 
         if (book.authors?.isNotEmpty() == true) {
@@ -46,7 +41,7 @@ class BookViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             book.authors.forEach {
                 strAuthor.append("$it,")
             }
-            txtBookAuthor.text = strAuthor.toString()
+            binding.txtBookAuthor.text = strAuthor.toString()
         }
 
     }

@@ -50,7 +50,7 @@ class NetworkModule {
                 .addHeader("Content-Length", contentLength.toString())
             requestBuilder.addHeader(
                 "Authorization",
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhamFyZS5sYWxpdEBnbWFpbC5jb20iLCJ1c2VySWQiOiI2MDJhYmJlYmExNjEyZDBjZmU4OGIxODUiLCJpYXQiOjE2MTM0ODU1NTQsImV4cCI6MTYxMzQ4OTE1NH0.LczDE-KzRyvYplo2Vj2JOkM9__Zn1liimWwvwGDB5mw"
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhamFyZS5sYWxpdEBnbWFpbC5jb20iLCJ1c2VySWQiOiI2MDJhYmJlYmExNjEyZDBjZmU4OGIxODUiLCJpYXQiOjE2MTM0OTk1NTQsImV4cCI6MTYxMzUwMzE1NH0.RWuDZAnVmo59cweKlB3ugnIpH4yN3ogQQYRC1YZ_d7U"
             )
             return chain.proceed(requestBuilder.build())
         }
