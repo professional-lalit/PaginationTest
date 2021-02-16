@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/img_book_poster"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/placeholder_banner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_book_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/img_book_poster"
+        android:layout_marginTop="5dp"
+        android:letterSpacing=".09"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_book_title"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ISBN:"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt_book_isbn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                tools:text="6125761253" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PAGES:"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt_book_page_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                tools:text="600" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PUBLISH DATE:"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt_book_publish_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                tools:text="10th Dec 1999" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp">
+
+            <TextView
+                android:id="@+id/txt_author_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AUTHOR:"
+                android:layout_marginEnd="50dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_toEndOf="@+id/txt_author_title"
+                android:gravity="end"
+                android:id="@+id/txt_book_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/black"
+                android:textStyle="italic"
+                tools:text="Haralambos Marmanis, Dmitry Babenko" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
