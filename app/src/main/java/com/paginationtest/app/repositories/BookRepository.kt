@@ -15,8 +15,8 @@ import javax.inject.Inject
 class BookRepository @Inject constructor(private val networkingInterface: NetworkingInterface) {
 
 
-    suspend fun fetchBooks(page: Int): NetworkResult {
-        val response = networkingInterface.fetchBooks(page = page)
+    suspend fun fetchBooks(cursor: String?): NetworkResult {
+        val response = networkingInterface.fetchBooks(cursor = cursor)
         return if (response.isSuccessful && response.code() in 200..210) {
             val bookList = Gson().fromJson(
                 Gson().toJson(response.body()), BookListResponse::class.java

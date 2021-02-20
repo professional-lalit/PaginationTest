@@ -12,36 +12,36 @@ import javax.inject.Inject
 
 class BookDataSource @Inject constructor(
     private val bookRepository: BookRepository
-): PagingSource<Int, Book>() {
+) : PagingSource<String, Book>() {
 
-    override fun getRefreshKey(state: PagingState<Int, Book>): Int? {
-        return state.anchorPosition?.let { anchorPosition ->
-            val anchorPage = state.closestPageToPosition(anchorPosition)
-            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
-        }
-    }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Book> {
+    override suspend fun load(params: LoadParams<String>): LoadResult<String, Book> {
         try {
-            val currentLoadingPageKey = params.key ?: 1
-            val response = bookRepository.fetchBooks(currentLoadingPageKey)
+            val currentLoadingPageCursor = params.key ?: ""
+            val response = bookRepository.fetchBooks(currentLoadingPageCursor)
             val responseData = mutableListOf<Book>()
+            var nextCursor: String? = ""
 
             if (response is NetworkResult.Success) {
                 val bookListResponse = response.model as BookListResponse
+                nextCursor = bookListResponse.next
                 if (bookListResponse.books?.isNotEmpty() == true)
                     responseData.addAll(bookListResponse.books)
             }
 
-            val prevKey = if (currentLoadingPageKey == 1) null else currentLoadingPageKey - 1
+            val prevCursor = ""
 
             return LoadResult.Page(
                 data = responseData,
-                prevKey = prevKey,
-                nextKey = currentLoadingPageKey.plus(1)
+                prevKey = nextCursor,
+                nextKey = nextCursor
             )
         } catch (e: Exception) {
             return LoadResult.Error(e)
         }
+    }
+
+    override fun getRefreshKey(state: PagingState<String, Book>): String? {
+        return state.pages.last().nextKey
     }
 }
